@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useRef, useEffect} from "react";
+import { useInterval} from './useInterval'
+import {
+  CANVAS_SIZE,
+  SNAKE_START,
+  APPLE_START,
+  SCALE,
+  SPEED,
+  DIRECTIONS 
+} from './constants'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+  const startGame = () => {
+
+  }
+
+  const endGame = () => {
+
+  }
+
+  const createApple = () => {
+
+  }
+
+  const checkCollision = () => {
+    
+  }
+
+  const checkAppleCollision = () => {
+
+  }
+
+  const gameLoop = () => {
+
+  }
+
+  
+    return(
+  <div>Snake Game</div>
+  )
 }
 
 export default App;
