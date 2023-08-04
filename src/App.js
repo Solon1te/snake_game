@@ -47,7 +47,9 @@ const App = () => {
   }
 
 useEffect(() => {
-
+  const context = canvasRef.currnet.getContext('2d');
+  context.setTransformation(SCALE, 0, 0, SCALE, 0, 0);
+  context.clearReact(0, 0, window.innerWidth, window.innerHeight);
 }, [snake, apple, gameOver])
 
 
