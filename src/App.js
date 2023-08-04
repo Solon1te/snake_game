@@ -8,6 +8,7 @@ import {
   SPEED,
   DIRECTIONS 
 } from './constants'
+import { keyboard } from "@testing-library/user-event/dist/keyboard";
 
 const App = () => {
   const canvasRef = useRef()
@@ -17,40 +18,58 @@ const App = () => {
   const [speed, setSpeed] = useState(null);
   const [gameOver, setGameover] = useState(false);
 
+  useInterval(() => gameLoop(), speed);
+
+  const endGame = () => {
+    setSpeed(null);
+    setGameover(true)
+  };
+
+  const moveSnake = (keyCode) => {
+    keyCode >= 37 && keyCode <= 40 && setDir(DIRECTIONS[keyCode]);
+  };
+
+  const createApple = () => {
+    apple.map((_a, i) => Math.floor(Math.random() * (CANVAS_SIZE[i] / SCALE)));
+  };
+
+  const checkCollision = (piece, snk = snake) => {
+    if (
+      piece[0] * SCALE >= CANVAS_SIZE[0] ||
+      piece[0] < 0 ||
+      piece[1] * SCALE >= CANVAS_SIZE[1] ||
+      piece[1] < 0
+    )
+    return true;
+
+    for (const segment of snk) {
+      if (piece[0] === segment[0] && piece[1] === segment[1]) return true;
+    }
+    return false  
+  };
 
   const startGame = () => {
 
-  }
+  };
 
-  const endGame = () => {
-
-  }
-
-  const moveSnake = () => {
-
-  }
-
-  const createApple = () => {
-
-  }
-
-  const checkCollision = () => {
-    
-  }
 
   const checkAppleCollision = () => {
 
-  }
+  };
 
   const gameLoop = () => {
 
-  }
+  };
 
 useEffect(() => {
   const context = canvasRef.currnet.getContext('2d');
-  context.setTransformation(SCALE, 0, 0, SCALE, 0, 0);
-  context.clearReact(0, 0, window.innerWidth, window.innerHeight);
-}, [snake, apple, gameOver])
+  context.setTransform(SCALE, 0, 0, SCALE, 0, 0);
+  context.clearReact(0, 0, CANVAS_SIZE[0], CANVAS_SIZE[1]);
+  context.fillStyle = 'pink';
+  snake.forEach([x, y]) => context.fillRect(x, y, 1, 1);
+  context.fillStyle = 'lightblue';
+  context.fillRect(apple[0], apple[1], 1, 1);
+  }, [snake, apple, gameOver])
 
 
     return(
